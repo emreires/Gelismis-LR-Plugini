@@ -37,15 +37,15 @@ public Plugin myinfo =
 	name = "Gelişmiş LR Eklentisi",
 	author = PLUGIN_AUTHOR,
 	version = PLUGIN_VERSION,
-	url = "csgoplugin.center"
+	url = "turkmodders.com"
 };
 
 public void OnPluginStart()
 {
-	tagi = CreateConVar("sourceturk_eklenti_taglari", "SOURCETURK.NET", "Eklenti taglarını giriniz.");
+	tagi = CreateConVar("turkmodders_eklenti_taglari", "TURKMODDERS.COM", "Eklenti taglarını giriniz.");
 	GetConVarString(tagi, taggo, sizeof(taggo));
-	kredi = CreateConVar("sourceturk_lr_noscope_kredi", "300", "NoScope LR'de yenen oyuncuya kaç kredi verilsin?");
-	kredi2 = CreateConVar("sourceturk_lr_knife_kredi", "300", "Bıçak LR'de yenen oyuncuya kaç kredi verilsin?");
+	kredi = CreateConVar("turkmodders_lr_noscope_kredi", "300", "NoScope LR'de yenen oyuncuya kaç kredi verilsin?");
+	kredi2 = CreateConVar("turkmodders_lr_knife_kredi", "300", "Bıçak LR'de yenen oyuncuya kaç kredi verilsin?");
 	RegConsoleCmd("sm_lr", lastrequest);
 	RegConsoleCmd("sm_lriptal", iptal);
 	HookEvent("weapon_fire", weaponfire);
