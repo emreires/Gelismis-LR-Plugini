@@ -29,24 +29,23 @@ ConVar kredi2;
 ConVar tagi;
 char taggo[64];
 
-new const String:FULL_SOUND_PATH[] = "sound/turkmodders/lrsarki.mp3";
-new const String:RELATIVE_SOUND_PATH[] = "*/turkmodders/lrsarki.mp3";
+new const String:FULL_SOUND_PATH[] = "sound/vortex/lrsarki.mp3";
+new const String:RELATIVE_SOUND_PATH[] = "*/vortex/lrsarki.mp3";
 
 public Plugin myinfo = 
 {
 	name = "Gelişmiş LR Eklentisi",
 	author = PLUGIN_AUTHOR,
 	version = PLUGIN_VERSION,
-	url = "turkmodders.com"
+	url = "csgoplugin.center"
 };
 
 public void OnPluginStart()
 {
-	tagi = CreateConVar("turkmodders_eklenti_taglari", "TURKMODDERS.COM", "Eklenti taglarını giriniz.");
+	tagi = CreateConVar("sourceturk_eklenti_taglari", "SOURCETURK.NET", "Eklenti taglarını giriniz.");
 	GetConVarString(tagi, taggo, sizeof(taggo));
-	kredi = CreateConVar("turkmodders_lr_noscope_kredi", "300", "NoScope LR'de yenen oyuncuya kaç kredi verilsin?");
-	kredi2 = CreateConVar("turkmodders_lr_knife_kredi", "300", "Bıçak LR'de yenen oyuncuya kaç kredi verilsin?");
-	AutoExecConfig(true, "turkmodders_gelismis_lr");
+	kredi = CreateConVar("sourceturk_lr_noscope_kredi", "300", "NoScope LR'de yenen oyuncuya kaç kredi verilsin?");
+	kredi2 = CreateConVar("sourceturk_lr_knife_kredi", "300", "Bıçak LR'de yenen oyuncuya kaç kredi verilsin?");
 	RegConsoleCmd("sm_lr", lastrequest);
 	RegConsoleCmd("sm_lriptal", iptal);
 	HookEvent("weapon_fire", weaponfire);
@@ -144,8 +143,8 @@ public void lrmenu(int client)
 		Menu menu = CreateMenu(MenuHandler1);
 		menu.SetTitle("Atmak istediğiniz LR tipini seçiniz.");
 		menu.AddItem("deagle", "Deagle LR\n Korumayı alırsanız koruma olursunuz!");
-		menu.AddItem("noscope", "Noscope LR\n Kazanırsanız 300 TL kazanırsınız!");
-		menu.AddItem("knife", "Bıçak LR\n Kazanırsanız 300 TL kazanırsınız!");
+		menu.AddItem("noscope", "Noscope LR\n Kazanırsanız %i TL kazanırsınız!", GetConVarInt(kredi));
+		menu.AddItem("knife", "Bıçak LR\n Kazanırsanız %i TL kazanırsınız!", GetConVarInt(kredi2));
 		menu.Display(client, 10);
 	}
 }
