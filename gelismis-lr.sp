@@ -53,6 +53,7 @@ public void OnPluginStart()
 	HookEvent("player_death", playerdeath);
 }
 
+
 public void OnMapStart()
 {
     AddFileToDownloadsTable( FULL_SOUND_PATH );
@@ -73,6 +74,10 @@ public Action iptal(int client, int args)
 	{
 		char name[64];
 		GetClientName(client, name, sizeof(name));
+		int ct_beacon = GetClientUserId(vortex_ct);
+		int t_beacon = GetClientUserId(vortex_t);
+		ServerCommand("sm_beacon #%i", ct_beacon);
+		ServerCommand("sm_beacon #%i", t_beacon);
 		vortex_lr = false;
 		ResetLR();
 		CPrintToChatAll("{darkred}[%s] {orange}%s {default}tarafından {green}LR {lightred}iptal edildi.", taggo, name);
@@ -284,6 +289,10 @@ public Action lrbaslat(Handle timer)
 		}
 		SetEntityHealth(vortex_ct, 100);
 		SetEntityHealth(vortex_t, 100);
+		int ct_beacon = GetClientUserId(vortex_ct);
+		int t_beacon = GetClientUserId(vortex_t);
+		ServerCommand("sm_beacon #%i", ct_beacon);
+		ServerCommand("sm_beacon #%i", t_beacon);
 	}
 }
 
